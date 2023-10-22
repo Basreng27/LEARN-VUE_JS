@@ -15,6 +15,8 @@
             <p>{{ "Ini Pesan : " + pesan }}</p> <!-- 5. => Javascript Expression -->
             <p>{{ 1 + 1 }}</p> <!-- bisa melalukan perhitungan aritmatika di sini. Bisa juga dimasukan if tenary -->
             <p>{{ getName() }}</p> <!-- pemanggilan methodnya -->
+            <p>{{ changeName("Wandi") }}</p> <!-- Parameter -->
+            <p>{{ totalBayar }}</p> <!-- akses computed -->
         </div>
 
         <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
@@ -32,7 +34,8 @@
                         // nama: "Rayandra Wandi Marselana", //variable pesan di panggil di atas dengan coed {{ pesan }}
                         // pesan: "My First Vue App!!"
                         nama: nama,
-                        pesan: pesan
+                        pesan: pesan,
+                        qty: 3 // properti bisa berisi string, number, boolean, array, object // terhubung dengan computed 8.
                     };
                 },
                 // 6. => Method
@@ -40,6 +43,18 @@
                     getName: function(){ // nama function
                         // Bisa Menuliskan code yang akan di jalankan
                         return "Hallo " + this.nama // mengambil nama dan menambahakan hallo
+                    },
+                    // 7. => Parameter
+                    changeName: function(name){
+                        return this.nama = name
+                        // return this.getName() //return function
+                    }
+                },
+                // 8. => Computed
+                computed: {
+                    // nama properti
+                    totalBayar: function(){
+                        return this.qty * 10000
                     }
                 },
             });
