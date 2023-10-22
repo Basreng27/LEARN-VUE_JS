@@ -4,6 +4,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
+        <style>
+            .btnactive{
+                background: salmon;
+                border: 0;
+                padding: 5px;
+            }
+        </style>
     </head>
     
     <body>
@@ -43,6 +50,11 @@
             <div :class="[activeClass, errorClass]"></div>
             <!-- return <div class="active text-danger"></div> -->
             <div :class="[isActive ? activeClass : '', errorClass]"></div>
+            <!-- Latihan Class Binding 1 -->
+            <!-- active -->
+            <button :class="{btnactive: menu === 'home'}" @click="menu = 'home'">Home</button>
+            <button :class="{btnactive: menu === 'about'}" @click="menus('about')">About</button>
+            <button :class="{btnactive: menu === 'blog'}" @click="menus('blog')">Blog</button>
         </div>
 
         <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
@@ -68,6 +80,7 @@
                         hasError: false,
                         activeClass: 'active',
                         errorClass: 'text-danger',
+                        menu:'home',
                     };
                 },
                 // 6. => Method
@@ -83,6 +96,9 @@
                     },
                     handleButon: function(){
                         return this.nilai++
+                    },
+                    menus: function(value){
+                        return this.menu = value
                     }
                 },
                 // 8. => Computed
