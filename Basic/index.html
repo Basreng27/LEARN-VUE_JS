@@ -12,6 +12,11 @@
             <!-- 3. => Mengakses Object Vue / 4. => Binding Expression "{{  }}"-->
             <h1 v-once>{{ nama.toUpperCase() }}</h1> <!-- v-once membuat data tidak bisa dirubah melalui DOM -->
             <p>{{ pesan }}</p>
+            <!-- 12. => Events -->
+            <button v-on:click="nilai++">CLICK</button> <!-- ketika di click -->
+            <!-- atau -->
+            <button @click="handleButon()">CLICK</button> <!-- ketika di click -->
+            <h1 v-text="nilai"></h1>
             <p>{{ "Ini Pesan : " + pesan }}</p> <!-- 5. => Javascript Expression -->
             <p>{{ 1 + 1 }}</p> <!-- bisa melalukan perhitungan aritmatika di sini. Bisa juga dimasukan if tenary -->
             <p>{{ getName() }}</p> <!-- pemanggilan methodnya -->
@@ -23,6 +28,12 @@
             <p v-text="pesan"></p> <!-- memanggil isi variable tanpa menggunakan {{  }} -->
             <p v-html="link"></p> <!-- memanggil isi variable tanpa menggunakan {{  }} dengan format HTML -->
             <p v-text="nilai*6"></p> <!-- 10. => Directive Binding -->
+            <!-- 11. => Attribute Binding -->
+            <img src="./../img/df.jpg" alt=""> 
+            <!-- atau -->
+            <img v-bind:src="gambar" alt="">
+            <!-- atau -->
+            <img :src="gambar" alt="">
         </div>
 
         <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
@@ -41,8 +52,9 @@
                         nama: nama,
                         pesan: pesan,
                         qty: 3, // properti bisa berisi string, number, boolean, array, object // terhubung dengan computed 8.
-                        nilai: 32,
+                        nilai: 1,
                         link: '<a href="#">Link</a>',
+                        gambar: './../img/df.jpg',
                     };
                 },
                 // 6. => Method
@@ -55,6 +67,9 @@
                     changeName: function(name){
                         return this.nama = name
                         // return this.getName() //return function
+                    },
+                    handleButon: function(){
+                        return this.nilai++
                     }
                 },
                 // 8. => Computed
