@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    
+    <body>
+        <div id="app">
+            <!-- Di sini Anda dapat menambahkan elemen HTML yang akan diikat oleh Vue -->
+            <!-- 3. => Mengakses Object Vue / 4. => Binding Expression "{{  }}"-->
+            <h1 v-once>{{ nama.toUpperCase() }}</h1> <!-- v-once membuat data tidak bisa dirubah melalui DOM -->
+            <p>{{ pesan }}</p>
+            <p>{{ "Ini Pesan : " + pesan }}</p> <!-- 5. => Javascript Expression -->
+            <p>{{ 1 + 1 }}</p> <!-- bisa melalukan perhitungan aritmatika di sini. Bisa juga dimasukan if tenary -->
+            <p>{{ getName() }}</p> <!-- pemanggilan methodnya -->
+        </div>
+
+        <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
+        <script>
+            // variablenya secara terpisah
+            const nama = "Rayandra Wandi Marselana";
+            const pesan = "My First Vue App!!";
+
+            
+            // 1. => Membuat instance Vue
+            const app = Vue.createApp({
+                // 2. => Data
+                data() {
+                    return {
+                        // nama: "Rayandra Wandi Marselana", //variable pesan di panggil di atas dengan coed {{ pesan }}
+                        // pesan: "My First Vue App!!"
+                        nama: nama,
+                        pesan: pesan
+                    };
+                },
+                // 6. => Method
+                methods: {
+                    getName: function(){ // nama function
+                        // Bisa Menuliskan code yang akan di jalankan
+                        return "Hallo " + this.nama // mengambil nama dan menambahakan hallo
+                    }
+                },
+            });
+
+            // Mount (pasangkan) instance Vue pada elemen dengan id "app"
+            app.mount("#app");
+        </script>
+    </body>
+</html>
