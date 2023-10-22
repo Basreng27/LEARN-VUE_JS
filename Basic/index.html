@@ -17,6 +17,7 @@
             <p>{{ getName() }}</p> <!-- pemanggilan methodnya -->
             <p>{{ changeName("Wandi") }}</p> <!-- Parameter -->
             <p>{{ totalBayar }}</p> <!-- akses computed -->
+            <p>{{ ganjilGenap }}</p> <!-- Latihan Ganjil Genap -->
         </div>
 
         <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
@@ -35,7 +36,8 @@
                         // pesan: "My First Vue App!!"
                         nama: nama,
                         pesan: pesan,
-                        qty: 3 // properti bisa berisi string, number, boolean, array, object // terhubung dengan computed 8.
+                        qty: 3, // properti bisa berisi string, number, boolean, array, object // terhubung dengan computed 8.
+                        nilai: 32
                     };
                 },
                 // 6. => Method
@@ -55,6 +57,11 @@
                     // nama properti
                     totalBayar: function(){
                         return this.qty * 10000
+                    },
+                    // Latihan Ganjil Genap
+                    ganjilGenap: function(){
+                        if(this.nilai % 2 == 0) return "GENAP" 
+                        else return "GANJIL";
                     }
                 },
             });
