@@ -18,6 +18,11 @@
             <p>{{ changeName("Wandi") }}</p> <!-- Parameter -->
             <p>{{ totalBayar }}</p> <!-- akses computed -->
             <p>{{ ganjilGenap }}</p> <!-- Latihan Ganjil Genap -->
+            <!-- 9. => DIrective -->
+            <!-- v-once adalah directive. directive ada bermacam macam. bisa google -->
+            <p v-text="pesan"></p> <!-- memanggil isi variable tanpa menggunakan {{  }} -->
+            <p v-html="link"></p> <!-- memanggil isi variable tanpa menggunakan {{  }} dengan format HTML -->
+            <p v-text="nilai*6"></p> <!-- 10. => Directive Binding -->
         </div>
 
         <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
@@ -25,7 +30,6 @@
             // variablenya secara terpisah
             const nama = "Rayandra Wandi Marselana";
             const pesan = "My First Vue App!!";
-
             
             // 1. => Membuat instance Vue
             const app = Vue.createApp({
@@ -37,7 +41,8 @@
                         nama: nama,
                         pesan: pesan,
                         qty: 3, // properti bisa berisi string, number, boolean, array, object // terhubung dengan computed 8.
-                        nilai: 32
+                        nilai: 32,
+                        link: '<a href="#">Link</a>',
                     };
                 },
                 // 6. => Method
