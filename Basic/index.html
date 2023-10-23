@@ -157,6 +157,15 @@
                             <li v-for="item in kelas">{{ item }}</li>
                         </ul>
                     </div>
+                    
+                    <div class="col-4 mb-3">
+                        <h3>19. Element Template</h3>
+                        <!-- seperti parentuntuk semua isi if atau seperti {} -->
+                        <template v-if="kelas.length > 1">
+                            <p>{{ nama }}</p>
+                            <li v-for="item in kelas">{{ item }}</li>
+                        </template>
+                    </div>
                 </div>
 
                 <div class="row">
