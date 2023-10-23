@@ -16,6 +16,23 @@
     <body>
         <div id="app">
             <!-- Di sini Anda dapat menambahkan elemen HTML yang akan diikat oleh Vue -->
+            <!-- 14. => Two Way Data Binding (Input) -->
+            <!-- ada banyak inputan di html implementasinya sama seperti ini -->
+            <input type="text" name="" v-model="nama"> <!-- data pada variable nama juga ikt berubah -->
+            <!-- menggunakan checkbox -->
+            <div>
+                <label><input type="checkbox" value="Kelas_1" v-model="kelas">Kelas 1</label>
+                <label><input type="checkbox" value="Kelas_2" v-model="kelas">Kelas 2</label>
+                <label><input type="checkbox" value="Kelas_3" v-model="kelas">Kelas 3</label>
+            </div>
+            <p>{{ kelas }}</p>
+            <!-- 15. => Directive Perulanagan v-for -->
+            <ul>
+                <!-- k yaitu key/valuenya dan kelas nama variable yang akan di ulang -->
+                <!-- jika object atau punya key bisa seperti "k.nama" -->
+                <li v-for="item in kelas">{{ item }}</li>
+                <li v-for="item of kelas" v-text="item"></li>
+            </ul>
             <!-- 3. => Mengakses Object Vue / 4. => Binding Expression "{{  }}"-->
             <h1 v-once>{{ nama.toUpperCase() }}</h1> <!-- v-once membuat data tidak bisa dirubah melalui DOM -->
             <p>{{ pesan }}</p>
@@ -81,6 +98,8 @@
                         activeClass: 'active',
                         errorClass: 'text-danger',
                         menu:'home',
+                        // kelas:[], // bentuknya bukan string yaitu array
+                        kelas:['Kelas_4','Kelas_5','Kelas_6'], // bentuknya bukan string yaitu array
                     };
                 },
                 // 6. => Method
