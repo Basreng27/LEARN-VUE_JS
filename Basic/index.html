@@ -13,7 +13,9 @@
             }
         </style>
     </head>
-    
+
+    <!-- untuk lebih jelas bisa baca documentasinya -->
+
     <body>
         <div class="container-fluid">
             <div id="app">
@@ -165,6 +167,21 @@
                             <p>{{ nama }}</p>
                             <li v-for="item in kelas">{{ item }}</li>
                         </template>
+
+                        <!-- Key ada di documentation -->
+                        <!-- harusnya key itu ada di setipa input seperti id -->
+                        <ul>
+                            <li v-for="item in items" :key="item.id">...</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>20. List Rendering Object</h3>
+                        <ul>
+                            <li v-for="item in items" :key="item.pesan">
+                                {{ item.pesan }}
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
@@ -219,6 +236,10 @@
                         // kelas:[], // bentuknya bukan string yaitu array
                         kelas:['Kelas_4','Kelas_5','Kelas_6'], 
                         numbers:[1,2,3,4,5,6], 
+                        items:[
+                            {pesan: "Pesan 1"},
+                            {pesan: "Pesan 2"},
+                        ], 
                     };
                 },
                 // 6. => Method
