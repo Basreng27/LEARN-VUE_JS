@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Learn Vue</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <style>
             .btnactive{
                 background: salmon;
@@ -14,64 +15,172 @@
     </head>
     
     <body>
-        <div id="app">
-            <!-- Di sini Anda dapat menambahkan elemen HTML yang akan diikat oleh Vue -->
-            <!-- 14. => Two Way Data Binding (Input) -->
-            <!-- ada banyak inputan di html implementasinya sama seperti ini -->
-            <input type="text" name="" v-model="nama"> <!-- data pada variable nama juga ikt berubah -->
-            <!-- menggunakan checkbox -->
-            <div>
-                <label><input type="checkbox" value="Kelas_1" v-model="kelas">Kelas 1</label>
-                <label><input type="checkbox" value="Kelas_2" v-model="kelas">Kelas 2</label>
-                <label><input type="checkbox" value="Kelas_3" v-model="kelas">Kelas 3</label>
+        <div class="container-fluid">
+            <div id="app">
+                <!-- Di sini Anda dapat menambahkan elemen HTML yang akan diikat oleh Vue -->
+                <div class="row">
+                    <div class="col-4 mb-3">
+                        <h3>1. Membuat instance Vue (JS nya)</h3>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>2. Data (JS nya )</h3>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>3. Mengakses Object Vue</h3>
+                            <!-- v-once membuat data tidak bisa dirubah melalui DOM -->
+                            <h1 v-once>{{ nama.toUpperCase() }}</h1>
+                            <p>{{ pesan }}</p>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>4. Binding Expression</h3>
+                            <p>{{ pesan }}</p>
+                            <p>{{ 1 + 1 }}</p> <!-- bisa melalukan perhitungan aritmatika di sini. Bisa juga dimasukan if tenary -->
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>5. Javascript Expression</h3>
+                            <p>{{ "Ini Pesan : " + pesan }}</p>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>6. Method</h3>
+                        <p>{{ getName() }}</p> <!-- pemanggilan methodnya -->
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>7. Parameter</h3>
+                        <p>{{ changeName("Wandi") }}</p>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>8. Computed</h3>
+                        <p>{{ totalBayar }}</p>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>9. Directive</h3>
+                        <!-- v-once adalah directive. directive ada bermacam macam. bisa google -->
+                        <p v-text="pesan"></p> <!-- memanggil isi variable tanpa menggunakan {{  }} -->
+                        <p v-html="link"></p> <!-- memanggil isi variable tanpa menggunakan {{  }} dengan format HTML -->
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>10. Directive Binding</h3>
+                        <p v-text="nilai*6"></p>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>11. Attribute Binding</h3>
+                        <img src="./../img/df.jpg" alt=""> 
+                        <!-- atau -->
+                        <img v-bind:src="gambar" alt="">
+                        <!-- atau -->
+                        <img :src="gambar" alt="">
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>12. Events</h3>
+                        <button v-on:click="nilai++">CLICK</button> <!-- ketika di click -->
+                        <!-- atau -->
+                        <button @click="handleButon()">CLICK</button> <!-- ketika di click -->
+                        <h1 v-text="nilai"></h1>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>13. Class Binding</h3>
+                        <div :class="{ active: isActive }"></div>
+                        <div class="static" :class="{ active: isActive, 'text-danger': hasError }" ></div>
+                        <!-- return <div class="static active"></div> -->
+                        <!-- jika ingin multiple class -->
+                        <div :class="[activeClass, errorClass]"></div>
+                        <!-- return <div class="active text-danger"></div> -->
+                        <div :class="[isActive ? activeClass : '', errorClass]"></div>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>14. Two Way Data Binding (Input)</h3>
+                        <!-- ada banyak inputan di html implementasinya sama seperti ini -->
+                        <input type="text" name="" v-model="nama"> <!-- data pada variable nama juga ikt berubah -->
+                        <!-- menggunakan checkbox -->
+                        <div>
+                            <label><input type="checkbox" value="Kelas_1" v-model="kelas">Kelas 1</label>
+                            <label><input type="checkbox" value="Kelas_2" v-model="kelas">Kelas 2</label>
+                            <label><input type="checkbox" value="Kelas_3" v-model="kelas">Kelas 3</label>
+                        </div>
+                        <p>{{ kelas }}</p>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>15. Directive Perulanagan v-for</h3>
+                        <ul>
+                            <!-- k yaitu key/valuenya dan kelas nama variable yang akan di ulang -->
+                            <!-- jika object atau punya key bisa seperti "k.nama" -->
+                            <li v-for="item in kelas">{{ item }}</li>
+                            <li v-for="item of kelas" v-text="item"></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>16. Mengakse Index</h3>
+                        <ul>
+                            <li v-for="(item, index) of kelas" v-text="index + item"></li> <!-- index++ untuk menambahkan nilai index atau nomor juga bisa -->
+                        </ul>
+
+                        <!-- perulangan angka -->
+                        <ul>
+                            <li v-for="x of 5" v-text="x"></li> <!-- index++ untuk menambahkan nilai index atau nomor juga bisa -->
+                        </ul>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>17. Conditional Rendering</h3>
+                        <!-- if else -->
+                        <!-- .length = mendapatkan total baris data -->
+                        <!-- <ul v-if="kelas.length > 1"> -->
+                        <!-- atau -->
+                        <ul v-if="kelas.length > 1">
+                            <li v-for="item in kelas">{{ item }}</li>
+                        </ul>
+                        <ul v-else>
+                            <li>Kelas Tidak Ada</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>18. Directive v-show</h3>
+                        <!-- sama seprti if jika data ada akan menampilkan jika tidak ada akan di sembunyikan -->
+                        <!-- hanya memberikan style display none -->
+                        <ul v-show="kelas.length > 1">
+                            <li v-for="item in kelas">{{ item }}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4 mb-3">
+                        <h3>Latihan Ganjil Genap</h3>
+                        <p>{{ ganjilGenap }}</p>
+                    </div>
+                    
+                    <div class="col-4 mb-3">
+                        <h3>Latihan Class Binding</h3>
+                        <!-- active -->
+                        <button :class="{btnactive: menu === 'home'}" @click="menu = 'home'">Home</button>
+                        <button :class="{btnactive: menu === 'about'}" @click="menus('about')">About</button>
+                        <button :class="{btnactive: menu === 'blog'}" @click="menus('blog')">Blog</button>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>Latihan Directive For {{ numbers }}</h3>
+                        <ul>
+                            <li v-for="number in cariBilangan(numbers)">{{ number }}</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <p>{{ kelas }}</p>
-            <!-- 15. => Directive Perulanagan v-for -->
-            <ul>
-                <!-- k yaitu key/valuenya dan kelas nama variable yang akan di ulang -->
-                <!-- jika object atau punya key bisa seperti "k.nama" -->
-                <li v-for="item in kelas">{{ item }}</li>
-                <li v-for="item of kelas" v-text="item"></li>
-            </ul>
-            <!-- 3. => Mengakses Object Vue / 4. => Binding Expression "{{  }}"-->
-            <h1 v-once>{{ nama.toUpperCase() }}</h1> <!-- v-once membuat data tidak bisa dirubah melalui DOM -->
-            <p>{{ pesan }}</p>
-            <!-- 12. => Events -->
-            <button v-on:click="nilai++">CLICK</button> <!-- ketika di click -->
-            <!-- atau -->
-            <button @click="handleButon()">CLICK</button> <!-- ketika di click -->
-            <h1 v-text="nilai"></h1>
-            <p>{{ "Ini Pesan : " + pesan }}</p> <!-- 5. => Javascript Expression -->
-            <p>{{ 1 + 1 }}</p> <!-- bisa melalukan perhitungan aritmatika di sini. Bisa juga dimasukan if tenary -->
-            <p>{{ getName() }}</p> <!-- pemanggilan methodnya -->
-            <p>{{ changeName("Wandi") }}</p> <!-- Parameter -->
-            <p>{{ totalBayar }}</p> <!-- akses computed -->
-            <p>{{ ganjilGenap }}</p> <!-- Latihan Ganjil Genap -->
-            <!-- 9. => DIrective -->
-            <!-- v-once adalah directive. directive ada bermacam macam. bisa google -->
-            <p v-text="pesan"></p> <!-- memanggil isi variable tanpa menggunakan {{  }} -->
-            <p v-html="link"></p> <!-- memanggil isi variable tanpa menggunakan {{  }} dengan format HTML -->
-            <p v-text="nilai*6"></p> <!-- 10. => Directive Binding -->
-            <!-- 11. => Attribute Binding -->
-            <img src="./../img/df.jpg" alt=""> 
-            <!-- atau -->
-            <img v-bind:src="gambar" alt="">
-            <!-- atau -->
-            <img :src="gambar" alt="">
-            <br>
-            <!-- 13. => Class Binding -->
-            <div :class="{ active: isActive }"></div>
-            <div class="static" :class="{ active: isActive, 'text-danger': hasError }" ></div>
-            <!-- return <div class="static active"></div> -->
-            <!-- jika ingin multiple class -->
-            <div :class="[activeClass, errorClass]"></div>
-            <!-- return <div class="active text-danger"></div> -->
-            <div :class="[isActive ? activeClass : '', errorClass]"></div>
-            <!-- Latihan Class Binding 1 -->
-            <!-- active -->
-            <button :class="{btnactive: menu === 'home'}" @click="menu = 'home'">Home</button>
-            <button :class="{btnactive: menu === 'about'}" @click="menus('about')">About</button>
-            <button :class="{btnactive: menu === 'blog'}" @click="menus('blog')">Blog</button>
         </div>
 
         <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
@@ -99,7 +208,8 @@
                         errorClass: 'text-danger',
                         menu:'home',
                         // kelas:[], // bentuknya bukan string yaitu array
-                        kelas:['Kelas_4','Kelas_5','Kelas_6'], // bentuknya bukan string yaitu array
+                        kelas:['Kelas_4','Kelas_5','Kelas_6'], 
+                        numbers:[1,2,3,4,5,6], 
                     };
                 },
                 // 6. => Method
@@ -118,7 +228,13 @@
                     },
                     menus: function(value){
                         return this.menu = value
-                    }
+                    },
+                    cariBilangan: function(value){
+                        // kembalikan nilai yang ganjil atau yangdi bagi 2 hasilnya 0
+                        return value.filter(i => {
+                            return i%2 == 0
+                        })
+                    },
                 },
                 // 8. => Computed
                 computed: {
