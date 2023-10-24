@@ -209,6 +209,13 @@
                         <a href="#" v-bind:clas="{btnactives: menu === 'home'}" v-on:click.prevent="changeMenu2('home')">Home</a><br>
                         <!-- di methodnya tidak menggunakan event dan evemt.preventDefault() -->
                     </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>24. Key Modifinders (Document, YT 35)</h3>
+                        <p>aksi onchnage, keyup, dll</p>
+                        <!-- saat ini di enter maka akan menjalankan form submit -->
+                        <input type="text" v-on:keyup.enter="submit">
+                    </div>
                 </div>
 
                 <div class="row">
@@ -298,6 +305,14 @@
                     },
                     changeMenu2: function(data){
                         this.menu = data
+                    },
+                    submit: function(event){
+                        // mengambil data nya
+                        let text = event.target.value
+                        // memasukan data ke variable kelas
+                        this.kelas.push(text)
+                        // setelah di enter inputannya dikosongkan
+                        event.target.value = ""
                     },
                 },
                 // 8. => Computed
