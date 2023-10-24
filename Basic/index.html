@@ -11,6 +11,11 @@
                 border: 0;
                 padding: 5px;
             }
+            .btnactives{
+                background: blue;
+                border: 0;
+                padding: 5px;
+            }
         </style>
     </head>
 
@@ -185,9 +190,17 @@
                     </div>
 
                     <div class="col-4 mb-3">
-                        <h3>21. Event Handling (Document YT 32)</h3>
+                        <h3>21. Event Handling (Document, YT 32)</h3>
                         <p>untuk menampilkan alert atau modal bawaan js</p>
                         <p>ada juga contoh prevent default</p>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>22. Penggunaan Object Event</h3>
+                        <!-- jika tidak ingin saat di clik redirect ke link berikutnya maka memakai global variable $event -->
+                        <a href="#" v-bind:clas="{btnactives: menu === 'home'}" v-on:click="changeMenu('home', $event)">Home</a><br>
+                        <a href="#" v-bind:clas="{btnactives: menu === 'about'}" v-on:click="changeMenu('about', $event)">About</a><br>
+                        <a href="#" v-bind:clas="{btnactives: menu === 'blog'}" v-on:click="changeMenu('blog', $event)">Blog</a>
                     </div>
                 </div>
 
@@ -271,6 +284,11 @@
                             return i%2 == 0
                         })
                     },
+                    changeMenu: function(data, event){
+                        // mencegah fungsi element html di nonaktifkan dan masih tetap di page
+                        event.preventDefault()
+                        this.menu = data
+                    }
                 },
                 // 8. => Computed
                 computed: {
