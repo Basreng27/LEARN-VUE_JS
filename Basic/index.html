@@ -202,6 +202,13 @@
                         <a href="#" v-bind:clas="{btnactives: menu === 'about'}" v-on:click="changeMenu('about', $event)">About</a><br>
                         <a href="#" v-bind:clas="{btnactives: menu === 'blog'}" v-on:click="changeMenu('blog', $event)">Blog</a>
                     </div>
+                    
+                    <div class="col-4 mb-3">
+                        <h3>23. Event Modifinders</h3>
+                        <!-- sama seperti yang no 22 tapi versi vue nya -->
+                        <a href="#" v-bind:clas="{btnactives: menu === 'home'}" v-on:click.prevent="changeMenu2('home')">Home</a><br>
+                        <!-- di methodnya tidak menggunakan event dan evemt.preventDefault() -->
+                    </div>
                 </div>
 
                 <div class="row">
@@ -288,7 +295,10 @@
                         // mencegah fungsi element html di nonaktifkan dan masih tetap di page
                         event.preventDefault()
                         this.menu = data
-                    }
+                    },
+                    changeMenu2: function(data){
+                        this.menu = data
+                    },
                 },
                 // 8. => Computed
                 computed: {
