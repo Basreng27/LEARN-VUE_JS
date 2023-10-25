@@ -216,6 +216,36 @@
                         <!-- saat ini di enter maka akan menjalankan form submit -->
                         <input type="text" v-on:keyup.enter="submit">
                     </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>25. Form Input Binding (Document, YT 36)</h3>
+                        <p>Input Pesan : {{ message }}</p>
+                        <input v-model="message" placeholder="edit me" />
+                        <p>==============================</p>
+                        <span>Textarea pesan is:</span>
+                        <p style="white-space: pre-line;">{{ messages }}</p>
+                        <textarea v-model="messages" placeholder="add multiple lines"></textarea>
+                        <p>==============================</p>
+                        <div>Check box: {{ checkedNames }}</div>
+                        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+                        <label for="jack">Jack</label>
+                        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+                        <label for="john">John</label>
+                        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+                        <label for="mike">Mike</label>
+                    </div>
+
+                    <div class="col-4 mb-3">
+                        <h3>26. Component</h3>
+                        <p>latihan_componen.html</p>
+                    </div>
+                    
+                    <div class="col-4 mb-3">
+                        <h3>27. Props (Document, YT41)</h3>
+                        <p>sama seperti parameter di function +-</p>
+                        <p>latihan_componen.html</p>
+                    </div>
+
                 </div>
 
                 <div class="row">
@@ -273,6 +303,9 @@
                             {pesan: "Pesan 1"},
                             {pesan: "Pesan 2"},
                         ], 
+                        message: '',
+                        messages: '',
+                        checkedNames: [],
                     };
                 },
                 // 6. => Method

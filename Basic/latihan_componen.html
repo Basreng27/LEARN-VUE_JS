@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Component</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- cara memanggilnya -->
+            <!-- nama adalah props -->
+            <header-component nama="Rayandra Wandi Marselana" age="22"></header-component>
+            
+            <main>
+                <!-- v-bind unutk mengambil data dari parentnya -->
+                <kelas-component v-bind:items="kelas" :inputKelas="kelasBaru" />
+            </main>
+
+            <footer-component></footer-component>
+        </div>
+
+        <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
+        <script>
+            // pembuatan component
+            const app = Vue.createApp({
+                data() {
+                    return {
+                        kelas: ['PHP', 'HTML'],
+                        kelasBaru: "",
+                    };
+                },
+                methods: {
+                    submit(){
+                        this.kelas.unshift(this.kelasBaru);
+                        this.kelasBaru = "";
+                    }
+                },
+            });
+
+            app.component('header-component', {
+                // props
+                props:['nama', 'age'],
+                template: `<header>
+                                <p v-text="pesan" :key="pesan"></p>
+                                <p>{{ "Created By " + nama }}</p>
+                                <p>{{ "Age : " + age }}</p>
+                            </header>`,
+                // Data Component
+                data: function(){
+                    return {
+                        pesan: "Vue JS Components"
+                    }
+                }
+            });
+            app.component('footer-component', {
+                template: `<footer>
+                                <p>Belajar Vue Component</p>
+                            </footer>`
+            });
+            app.component('kelas-component', {
+                props:['items', 'inputKelas'],
+                template: ` <div>
+                                <h3>Tambah Kelas</h3>
+                                <input type="text" placeholder="Nama Kelas" @keyup.enter="submit" v-model="inputKelas">
+                                <hr>
+                                <template v-if="items.length > 0">
+                                    <ul>
+                                        <li v-for="item in items" :key="item" v-text="item"></li>
+                                    </ul>
+                                </template>
+                            </div>`,
+            });
+
+            app.mount("#app");
+        </script>
+    </body>
+</html>
