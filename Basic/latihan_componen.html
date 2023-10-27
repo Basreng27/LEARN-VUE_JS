@@ -12,8 +12,13 @@
             <header-component nama="Rayandra Wandi Marselana" age="22"></header-component>
             
             <main>
+                <Home> </Home>
+                
                 <!-- v-bind unutk mengambil data dari parentnya -->
-                <kelas-component v-bind:items="kelas" :inputKelas="kelasBaru" />
+                <!-- nama emit yg di daftarkan hapusKelas -->
+                <!-- <kelas-component v-bind:items="kelas" :inputKelas="kelasBaru" v-on:hapusKelas="hapusKelasEmit($event)" /> -->
+                <!-- <kelas-component v-bind:items="kelas" v-on:submitKelas="submitkelas" :hapusKelas="hapusKelasEmit" /> -->
+                <kelas-component v-bind:items="kelas" v-on:submitKelas="submitkelas" @hapusKelas="hapusKelasEmit" />
             </main>
 
             <footer-component></footer-component>
@@ -21,8 +26,15 @@
 
         <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
         <script>
+            // Componen Local
+            const Home = {
+                template: '<div>Home</div>'
+            }
             // pembuatan component
             const app = Vue.createApp({
+                components:{
+                    Home
+                },
                 data() {
                     return {
                         kelas: ['PHP', 'HTML'],
@@ -30,10 +42,16 @@
                     };
                 },
                 methods: {
-                    submit(){
-                        this.kelas.unshift(this.kelasBaru);
+                    submitkelas(event){
+                        this.kelas.unshift(event.target.value);
                         this.kelasBaru = "";
-                    }
+                    },
+                    hapusKelasEmit(index) {
+                        // Lakukan sesuatu dengan indeks yang diterima, seperti menghapus item dari array 'kelas'
+                        // Kemudian, jika Anda ingin membersihkan inputKelas:
+                        // menghapus
+                        this.kelas.splice(index, 1);
+                    },
                 },
             });
 
@@ -58,17 +76,26 @@
                             </footer>`
             });
             app.component('kelas-component', {
-                props:['items', 'inputKelas'],
+                props:['items'],
                 template: ` <div>
                                 <h3>Tambah Kelas</h3>
-                                <input type="text" placeholder="Nama Kelas" @keyup.enter="submit" v-model="inputKelas">
+                                <input type="text" placeholder="Nama Kelas" @keyup.enter="$emit('submitKelas', $event)">
                                 <hr>
                                 <template v-if="items.length > 0">
                                     <ul>
-                                        <li v-for="item in items" :key="item" v-text="item"></li>
+                                        <li v-for="(item,index) of items" :key="item">{{ item }} 
+                                        <!-- Emit Custom Event --> 
+                                        <!--<a href="" v-on:click.prevent="$emit('hapusKelas',index)">Hapus</a>--> 
+                                        <a href="" @click.prevent="emitHapusKelas(index)">Hapus</a>
+                                        </li>
                                     </ul>
                                 </template>
                             </div>`,
+                methods: {
+                    emitHapusKelas(index) {
+                        this.$emit('hapusKelas', index);
+                    }
+                }
             });
 
             app.mount("#app");
